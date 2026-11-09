@@ -27,3 +27,13 @@ written for JAX. The math and the curriculum transfer unchanged.
 See `notebooks/session-01.ipynb`: PyTorch environment, Scaling Book
 Chapter 1 derivations, and step zero of the roughly 10M parameter
 transformer that learns arithmetic (dataset, tokenizer, skeleton).
+Executed 2026-11-09, torch 2.15.0+cpu.
+
+## Phase A, Session 2
+
+See `notebooks/session-02.ipynb`: trained the addition transformer on
+CPU. Two smaller siblings of the ~10.7M skeleton, 400 steps each: small
+(603k params) final loss 1.3444, medium (1.79M) final loss 1.1496, both
+1% exact-match on 200 held-out problems. Bigger is better on loss, but
+neither learns 3-digit addition in 400 steps. The ~10.7M run waits for
+a GPU. Write-up in `writeups/session-02-writeup.md`.

@@ -9,7 +9,7 @@ PyTorch environment verified (torch 2.15.0+cpu, CPU device), dataset and tokeniz
 - Environment: torch imports, version 2.15.0+cpu, CPU device. A tiny training loop fits y = 2x + 1 in 20 steps: loss 3.876 down to 0.000198, learned weight 1.9933 and bias 0.9923 against the true 2.0 and 1.0.
 - Dataset: addition up to 3 digits, generated on the fly, e.g. "864+394=1258". 1,000,000 possible pairs (0 to 999 plus 0 to 999).
 - Tokenizer: 15 tokens, digits 0-9 plus '+', '=', and pad/bos/eos. Encode and decode round-trip verified on "123+456=579".
-- Model skeleton: decoder-only transformer, d_model 384, 6 layers, 6 heads, d_ff 1536, vocab 15, max_len 32. Parameter count from the code: 10,671,360, about 10.7M. One forward pass on a real batch of 4 runs: logits shape (4, 16, 15), untrained loss 3.0513.
+- Model skeleton: decoder-only transformer, d_model 384, 6 layers, 6 heads, d_ff 1536, vocab 15, max_len 32. Parameter count from the code: 10,671,360, about 10.7M. One forward pass on a real batch of 4 runs: logits shape (4, 16, 15), untrained loss 2.8916.
 
 ## One worked roofline example
 
@@ -21,7 +21,7 @@ The 6N rule, derived for this model: forward about 2N per token (21.3 MFLOP), ba
 
 ## What surprised me
 
-The untrained model's loss (3.0513) is worse than random guessing over 15 tokens (ln 15 = 2.7081). An untrained model is not a uniform random model: its output distribution is already peaked, just peaked in the wrong places, so it scores worse than chance until training starts moving it.
+The untrained model's loss (2.8916) is worse than random guessing over 15 tokens (ln 15 = 2.7081). An untrained model is not a uniform random model: its output distribution is already peaked, just peaked in the wrong places, so it scores worse than chance until training starts moving it.
 
 ## Open questions for Session 2
 
